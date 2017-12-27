@@ -4,7 +4,7 @@ class App extends Component {
   render() {
     return(
       <div>
-        Hello world from App!
+        Hello world from App with React Router!
       </div>
     )
   }
