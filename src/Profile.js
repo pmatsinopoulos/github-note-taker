@@ -11,10 +11,11 @@ class Profile extends Component {
   }
 
   render() {
+    const username = this.props.match.params.username;
     return (
       <div className="row">
         <div className="col-md-4">
-          User Profile Component
+          User Profile Component for user {username}
         </div>
 
         <div className="col-md-4">
