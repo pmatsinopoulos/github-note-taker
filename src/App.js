@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import Menu from './Menu';
+import Home from './Home';
 
 class App extends Component {
   render() {
     return(
       <div>
-        Hello world from App with React Router!
+        <Menu />
+        <Home />
       </div>
     )
   }
