@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import UserProfile from "./Github/UserProfile";
 import Repos from "./Github/Repos";
 import Notes from "./Notes/Notes";
+import base from "./base";
 
 class Profile extends Component {
   constructor(props) {
@@ -9,9 +10,28 @@ class Profile extends Component {
     this.state = {
       bio: {name: 'foo-name'},
       repos: [1, 2, 3],
-      notes: ['a', 'b', 'c']
+      notes: []
     }
   }
+
+  init(username) {
+    this.ref = base.syncState(
+      `/github/${username}`, {
+        context: this,
+        asArray: true,
+        state: 'notes'
+      });
+  }
+  
+  componentDidMount() {
+    const {username} = this.props.match.params;
+    this.init(username);
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
+  // TODO: We may need to implement the lifecycle for componentWillReceiveProps() see: https://github.com/tylermcginnis/re-base/blob/master/examples/firebase/github-notetaker/app/components/Profile.js
 
   render() {
     const username = this.props.match.params.username;

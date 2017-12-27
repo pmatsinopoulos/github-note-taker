@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
+import NotesList from './NotesList';
 
 class Notes extends Component {
   render() {
     return(
       <div>
-        <p>Notes</p>
-
-        <p>
-          {this.props.notes.map((note, index) => note)}
-        </p>
+        <h3>Notes for {this.props.username}</h3>
+        <NotesList notes={this.props.notes}/>
       </div>
     )
   }
