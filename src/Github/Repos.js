@@ -11,13 +11,16 @@ class Repos extends Component {
     return(
       <div>
         <h3>Repos</h3>
-        {
-          this.props.repos.map((repo, index) => (
-            <div key={index}>
-              {repo.name}
-            </div>
-          ))
-        }
+        <ul className="list-group">
+          {
+            this.props.repos.map((repo, index) => (
+              <li className="list-group-item" key={index}>
+                {repo.html_url && <h4><a href={repo.html_url}>{repo.name}</a></h4>}
+                {repo.description && <p>{repo.description}</p>}
+              </li>
+            ))
+          }
+        </ul>
       </div>
     )
   }
