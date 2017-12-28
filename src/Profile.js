@@ -3,6 +3,7 @@ import UserProfile from "./Github/UserProfile";
 import Repos from "./Github/Repos";
 import Notes from "./Notes/Notes";
 import base from "./base";
+import helpers from "./utils/helpers";
 
 class Profile extends Component {
   constructor(props) {
@@ -24,15 +25,22 @@ class Profile extends Component {
         state: 'notes'
       });
   }
-  
+
   componentDidMount() {
     const {username} = this.props.match.params;
     this.init(username);
+
+    helpers.getGithubInfo(username)
+      .then((data) => {
+        this.setState({bio: data.bio, repos: data.repos});
+      })
+
   }
 
   componentWillUnmount() {
     base.removeBinding(this.ref);
   }
+
   // TODO: We may need to implement the lifecycle for componentWillReceiveProps() see: https://github.com/tylermcginnis/re-base/blob/master/examples/firebase/github-notetaker/app/components/Profile.js
 
   onAddNote(note) {

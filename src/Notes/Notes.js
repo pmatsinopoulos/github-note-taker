@@ -22,7 +22,7 @@ class Notes extends Component {
   render() {
     return(
       <div>
-        <h3>Notes for {this.props.username}</h3>
+        <h3>Notes</h3>
         <AddNote onAddNote={this.addNote}/>
         <NotesList notes={this.props.notes}/>
       </div>

@@ -10,7 +10,7 @@ class UserProfile extends Component {
   render() {
     return(
       <div>
-        <p>User Profile</p>
+        <h3>User Profile</h3>
         <p>Username: {this.props.username}</p>
         <p>Bio: {this.props.bio.name} </p>
       </div>

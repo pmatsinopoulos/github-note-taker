@@ -10,9 +10,13 @@ class Repos extends Component {
   render() {
     return(
       <div>
-        <p>REPOOOOOS</p>
+        <h3>Repos</h3>
         {
-          this.props.repos.map((repo, index) => (repo))
+          this.props.repos.map((repo, index) => (
+            <div key={index}>
+              {repo.name}
+            </div>
+          ))
         }
       </div>
     )
