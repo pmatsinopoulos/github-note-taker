@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class UserProfile extends Component {
+  static propTypes = {
+    username: PropTypes.string.isRequired,
+    bio: PropTypes.object.isRequired
+  };
+
   render() {
     return(
       <div>
