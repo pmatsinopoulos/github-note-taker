@@ -3,7 +3,7 @@ import UserProfile from "./Github/UserProfile";
 import Repos from "./Github/Repos";
 import Notes from "./Notes/Notes";
 import base from "./base";
-import helpers from "./utils/helpers";
+import getGithubInfo from "./utils/helpers";
 
 class Profile extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Profile extends Component {
     const {username} = this.props.match.params;
     this.init(username);
 
-    helpers.getGithubInfo(username)
+    getGithubInfo(username)
       .then((data) => {
         this.setState({bio: data.bio, repos: data.repos});
       })
