@@ -41,7 +41,13 @@ class Profile extends Component {
     base.removeBinding(this.ref);
   }
 
-  // TODO: We may need to implement the lifecycle for componentWillReceiveProps() see: https://github.com/tylermcginnis/re-base/blob/master/examples/firebase/github-notetaker/app/components/Profile.js
+  componentWillReceiveProps(newProps) {
+    console.log("Profile::componentWillReceiveProps(): ", newProps);
+    if (newProps.match.params.username !== this.props.match.params.username) {
+      base.removeBinding(this.ref);
+      this.init(newProps.match.params.username);
+    }
+  }
 
   onAddNote(note) {
     this.setState({
