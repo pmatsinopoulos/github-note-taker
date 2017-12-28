@@ -11,10 +11,12 @@ class Profile extends Component {
       bio: {name: 'foo-name'},
       repos: [1, 2, 3],
       notes: []
-    }
+    };
+    this.onAddNote = this.onAddNote.bind(this);
   }
 
   init(username) {
+    // This is a two way binding
     this.ref = base.syncState(
       `/github/${username}`, {
         context: this,
@@ -33,6 +35,13 @@ class Profile extends Component {
   }
   // TODO: We may need to implement the lifecycle for componentWillReceiveProps() see: https://github.com/tylermcginnis/re-base/blob/master/examples/firebase/github-notetaker/app/components/Profile.js
 
+  onAddNote(note) {
+    this.setState({
+      ...this.state,
+      notes: [...this.state.notes, note]
+    });
+  }
+
   render() {
     const username = this.props.match.params.username;
     const {bio, repos, notes} = this.state;
@@ -47,7 +56,7 @@ class Profile extends Component {
         </div>
 
         <div className="col-md-4">
-          <Notes username={username} notes={notes}/>
+          <Notes username={username} notes={notes} onAddNote={this.onAddNote}/>
         </div>
       </div>
     );
