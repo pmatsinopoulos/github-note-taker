@@ -1,38 +1,29 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class AddNote extends Component {
-  static propTypes = {
-    onAddNote: PropTypes.func.isRequired
+const AddNote = ({onAddNote}) => {
+  const addNote = (e) => {
+    e.preventDefault();
+    onAddNote(this.note.value);
+    this.note.value = '';
   };
 
-  constructor(props) {
-    super(props);
-    this.note = '';
-    this.addNote = this.addNote.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
-
-  addNote (e) {
-    e.preventDefault();
-    this.props.onAddNote(this.note.value);
-    this.note.value = '';
-  }
-
-  setRef(input) {
+  const setRef = (input) => {
     this.note = input
-  }
+  };
 
-  render() {
-    return (
-      <form className="form-inline">
-        <div className="form-group">
-          <input type="text" placeholder="add a note" className="form-control" ref={this.setRef}/>
-          <button className="btn btn-default" onClick={this.addNote}>Add</button>
-        </div>
-      </form>
-    )
-  }
-}
+  return (
+    <form className="form-inline">
+      <div className="form-group">
+        <input type="text" placeholder="add a note" className="form-control" ref={setRef}/>
+        <button className="btn btn-default" onClick={addNote}>Add</button>
+      </div>
+    </form>
+  )
+};
+
+AddNote.propTypes = {
+  onAddNote: PropTypes.func.isRequired
+};
 
 export default AddNote;

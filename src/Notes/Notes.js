@@ -1,33 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
 import NotesList from './NotesList';
 import PropTypes from 'prop-types';
 import AddNote from './AddNote';
 
-class Notes extends Component {
-  static propTypes = {
-    username: PropTypes.string.isRequired,
-    notes: PropTypes.array.isRequired,
-    onAddNote: PropTypes.func.isRequired
+const Notes = ({onAddNote, notes}) => {
+  const addNote = (note) => {
+    onAddNote(note);
   };
 
-  constructor(props) {
-    super(props);
-    this.addNote = this.addNote.bind(this);
-  }
+  return (
+    <div>
+      <h3>Notes</h3>
+      <AddNote onAddNote={addNote}/>
+      <NotesList notes={notes}/>
+    </div>
+  )
+};
 
-  addNote(note) {
-    this.props.onAddNote(note);
-  }
-
-  render() {
-    return(
-      <div>
-        <h3>Notes</h3>
-        <AddNote onAddNote={this.addNote}/>
-        <NotesList notes={this.props.notes}/>
-      </div>
-    )
-  }
-}
+Notes.propTypes = {
+  notes: PropTypes.array.isRequired,
+  onAddNote: PropTypes.func.isRequired
+};
 
 export default Notes;
